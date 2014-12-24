@@ -23,6 +23,9 @@ public class Patient
 		this.ass_tel = ass_tel;
 		this.ass_email = ass_email;
 	}
+	
+	public Patient() {
+	}
 
 	private Long ass_ipca;
 

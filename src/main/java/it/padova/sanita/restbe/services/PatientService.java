@@ -1,16 +1,20 @@
 package it.padova.sanita.restbe.services;
 
+import java.util.List;
+
 import it.padova.sanita.restbe.dao.PatientDAO;
 import it.padova.sanita.restbe.dto.Patient;
 
 import javax.ejb.Stateless;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 /** Example resource class hosted at the URI path "/myresource"
  */
@@ -25,13 +29,36 @@ public class PatientService {
      * type.
      * @return String that will be send back as a response of type "text/plain".
      */
-	@Path("/patient")
+	/*@Path("/patient")
 	@GET 
     @Produces("text/plain")
     public String getIt() {
         return "Hello page!";
-    }
+    }*/
 
+	@GET
+	@Path("patient")
+	@Produces("application/json")
+	public Response getPatients()
+	{
+		try
+		{
+			//Get specific values
+			List<Patient> _patients = patientDAO.findAll();
+
+			if(_patients != null) {
+				return Response.status(200).entity(gson.toJson(_patients)).build(); 
+			} else {
+				return Response.status(404).entity("NOT FOUND").build();
+			}
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			return Response.status(500).entity("ERROR").build();
+		}
+	}
+	
 	@GET
 	@Path("patient/{id}")
 	@Produces("application/json")
@@ -55,6 +82,19 @@ public class PatientService {
 			return Response.status(500).entity("ERROR").build();
 		}
 
+	}
+	
+	@POST
+	@Path("/patient")
+	public Response createOrUpdatePatient(String payload) {
+		Patient patient = gson.fromJson(payload, Patient.class);
+		try {
+			patient = patientDAO.saveOrUpdate(patient);
+			return Response.status(200).entity(null).build();
+
+		} catch (Exception e) {
+			return Response.status(500).entity(null).build();
+		}
 	}
 	
 }
