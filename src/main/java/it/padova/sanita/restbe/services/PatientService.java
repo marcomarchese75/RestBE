@@ -1,11 +1,12 @@
 package it.padova.sanita.restbe.services;
 
 import java.util.List;
-
+ 
 import it.padova.sanita.restbe.dao.PatientDAO;
 import it.padova.sanita.restbe.dto.Patient;
 
 import javax.ejb.Stateless;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -94,6 +95,30 @@ public class PatientService {
 
 		} catch (Exception e) {
 			return Response.status(500).entity(null).build();
+		}
+	}
+	
+	@DELETE
+	@Path("patient/{id}")
+	public Response deletePatient(@PathParam("id") Long id)
+	{
+		try
+		{
+			//Get specific values
+			Patient _patient = patientDAO.findById(id);
+
+			if(_patient != null) {
+				patientDAO.delete(_patient);
+				return Response.status(200).entity(gson.toJson(null)).build(); 
+			} else {
+				return Response.status(404).entity("NOT FOUND").build();
+			}
+
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			return Response.status(500).entity("ERROR").build();
 		}
 	}
 	
