@@ -55,19 +55,12 @@ public class PatientDAO extends GenericHibernateDao<Patient, Long> {
 			callableStatement.setString(4,patient.getAss_Tel());
 			callableStatement.setString(5,patient.getAss_Email());
 
-			//callableStatement.registerOutParameter(4, java.sql.Types.VARCHAR);
+			callableStatement.registerOutParameter(6, java.sql.Types.VARCHAR);
 
-			callableStatement.registerOutParameter(6, OracleTypes.CURSOR);
 			callableStatement.execute();
 
-			//String result = callableStatement.getString(4);
+			ret = callableStatement.getString(6);
 			//System.out.println(result);
-
-			ResultSet rs = (ResultSet)callableStatement.getObject(5);
-			 
-			rs.close();
-			Gson gson = new Gson();
-			ret = gson.toJson(array);
 			
 		}catch(SQLException e){
 			e.printStackTrace();

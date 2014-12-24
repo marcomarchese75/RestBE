@@ -106,7 +106,6 @@ public class PatientService {
 		try {
 			String ret = patientDAO.InsertOrUpdateViaStoredPro(patient);
 			return Response.status(200).entity(ret).build();
-
 		} catch (Exception e) {
 			return Response.status(500).entity(null).build();
 		}
