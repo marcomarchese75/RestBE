@@ -13,7 +13,17 @@ import javax.persistence.Table;
 @Table(name="ASSISTITO", schema="scott")
 @SequenceGenerator(name="IdPatientSequenceGen",sequenceName="ASS_IPCA_SEQ",allocationSize=1,initialValue=1)
 public class Patient
-{
+{	
+	public Patient(Long ass_ipca, String ass_cogn, String ass_nome,
+			String ass_tel, String ass_email) {
+		
+		this.ass_ipca = ass_ipca;
+		this.ass_cogn = ass_cogn;
+		this.ass_nome = ass_nome;
+		this.ass_tel = ass_tel;
+		this.ass_email = ass_email;
+	}
+
 	private Long ass_ipca;
 
 	private String ass_cogn;
@@ -32,7 +42,7 @@ public class Patient
 		return ass_ipca;
 	}
 
-	public void setId(Long ass_ipca)
+	public void setAss_Ipca(Long ass_ipca)
 	{
 		this.ass_ipca = ass_ipca;
 	}
@@ -63,6 +73,17 @@ public class Patient
 	public String getAss_Tel()
 	{
 		return ass_tel;
+	}
+
+	public void setAss_Tel(String ass_tel)
+	{
+		this.ass_tel = ass_tel;
+	}
+	
+	@Column(name="ASS_EMAIL", nullable = false, length = 100)
+	public String getAss_Email()
+	{
+		return ass_email;
 	}
 
 	public void setAss_Email(String ass_email)

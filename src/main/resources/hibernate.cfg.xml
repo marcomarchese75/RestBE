@@ -19,7 +19,7 @@
     <property name="hibernate.show_sql">true</property>
     <property name="hibernate.hbm2ddl.auto">create</property>
     
-    <mapping package="it.padova.sanita.restbackend.model" />
-    <mapping class="it.padova.sanita.restbackend.model.Contact" />
+    <mapping package="it.padova.sanita.restbe.dto" />
+    <mapping class="it.padova.sanita.restbe.dto.Patient" />
   </session-factory>
 </hibernate-configuration>

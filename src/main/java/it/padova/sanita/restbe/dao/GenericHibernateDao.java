@@ -16,7 +16,7 @@ import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Example;
 import org.hibernate.internal.SessionFactoryImpl;
 
-import it.padova.sanita.restbe.utils.HibernateUtil;
+import it.padova.sanita.restbe.utils.HibernateUtils;
 
 @Transactional
 public abstract class GenericHibernateDao<T, ID extends Serializable>
