@@ -1,4 +1,4 @@
-package it.padova.sanita.restbackend.model;
+package it.padova.sanita.restbe.dto;
 
 
 import javax.persistence.Column;
@@ -10,72 +10,63 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Contact", schema="scott")
-@SequenceGenerator(name="IdContactSequenceGen",sequenceName="SEQ_CONTACT_ID",allocationSize=1,initialValue=1)
-public class Contact
+@Table(name="ASSISTITO", schema="scott")
+@SequenceGenerator(name="IdPatientSequenceGen",sequenceName="ASS_IPCA_SEQ",allocationSize=1,initialValue=1)
+public class Patient
 {
-	private Long id;
+	private Long ass_ipca;
 
-	private String email;
+	private String ass_cogn;
 
-	private String name;
+	private String ass_nome;
 
-	private String phoneNumber;
+	private String ass_tel;
 
-	private String newField;
-
-	@Column(name="NEWFIELD", nullable = true, length = 2000)
-	public String getNewField() {
-		return newField;
-	}
-
-	public void setNewField(String newField) {
-		this.newField = newField;
-	}
+	private String ass_email;
 
 	@Id
-	@Column(name="ID_CONTACT", unique = true, nullable = false)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "IdContactSequenceGen")
-	public Long getId()
+	@Column(name="ASS_IPCA", unique = true, nullable = false)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "IdPatientSequenceGen")
+	public Long getAss_Ipca()
 	{
-		return id;
+		return ass_ipca;
 	}
 
-	public void setId(Long id)
+	public void setId(Long ass_ipca)
 	{
-		this.id = id;
+		this.ass_ipca = ass_ipca;
 	}
 
-	@Column(name="EMAIL", nullable = false, length = 100)
-	public String getEmail()
+	@Column(name="ASS_COGN", nullable = false, length = 100)
+	public String getAss_Cogn()
 	{
-		return email;
+		return ass_cogn;
 	}
 
-	public void setEmail(String email)
+	public void setAss_Cogn(String ass_cogn)
 	{
-		this.email = email;
+		this.ass_cogn = ass_cogn;
+	}
+	
+	@Column(name="ASS_NOME", nullable = false, length = 100)
+	public String getAss_Nome()
+	{
+		return ass_nome;
 	}
 
-	@Column(name="NAME", nullable = false, length = 255)
-	public String getName()
+	public void setAss_Nome(String ass_nome)
 	{
-		return name;
+		this.ass_nome = ass_nome;
+	}
+	
+	@Column(name="ASS_TEL", nullable = false, length = 100)
+	public String getAss_Tel()
+	{
+		return ass_tel;
 	}
 
-	public void setName(String name)
+	public void setAss_Email(String ass_email)
 	{
-		this.name = name;
-	}
-
-	@Column(name="PHONENUMBER", nullable = true, length = 2000)
-	public String getPhoneNumber()
-	{
-		return phoneNumber;
-	}
-
-	public void setPhoneNumber(String phoneNumber)
-	{
-		this.phoneNumber = phoneNumber;
+		this.ass_email = ass_email;
 	}
 }
