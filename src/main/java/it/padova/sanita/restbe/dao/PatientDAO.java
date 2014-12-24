@@ -48,7 +48,7 @@ public class PatientDAO extends GenericHibernateDao<Patient, Long> {
 		String ret = "";
 		CallableStatement callableStatement = null;
 		try{
-			callableStatement = getConnection().prepareCall("call INSUPDPATIENT(?,?,?,?,?)");
+			callableStatement = getConnection().prepareCall("call INSUPDPATIENT(?,?,?,?,?,?)");
 			callableStatement.setLong(1,patient.getAss_Ipca());
 			callableStatement.setString(2,patient.getAss_Nome());
 			callableStatement.setString(3,patient.getAss_Cogn());
@@ -57,13 +57,13 @@ public class PatientDAO extends GenericHibernateDao<Patient, Long> {
 
 			//callableStatement.registerOutParameter(4, java.sql.Types.VARCHAR);
 
-			callableStatement.registerOutParameter(4, OracleTypes.CURSOR);
+			callableStatement.registerOutParameter(6, OracleTypes.CURSOR);
 			callableStatement.execute();
 
 			//String result = callableStatement.getString(4);
 			//System.out.println(result);
 
-			ResultSet rs = (ResultSet)callableStatement.getObject(4);
+			ResultSet rs = (ResultSet)callableStatement.getObject(5);
 			 
 			rs.close();
 			Gson gson = new Gson();
