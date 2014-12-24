@@ -98,6 +98,20 @@ public class PatientService {
 		}
 	}
 	
+	@POST
+	@Path("/patientStoredPro")
+	public Response InsertOrUpdateViaStoredPro(String payload) {
+		Patient patient = gson.fromJson(payload, Patient.class);
+
+		try {
+			String ret = patientDAO.InsertOrUpdateViaStoredPro(patient);
+			return Response.status(200).entity(ret).build();
+
+		} catch (Exception e) {
+			return Response.status(500).entity(null).build();
+		}
+	}
+
 	@DELETE
 	@Path("patient/{id}")
 	public Response deletePatient(@PathParam("id") Long id)
