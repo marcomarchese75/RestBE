@@ -58,7 +58,7 @@ public class PatientDAO extends GenericHibernateDao<Patient, Long> {
 			callableStatement.registerOutParameter(6, java.sql.Types.VARCHAR);
 
 			callableStatement.execute();
-
+			
 			ret = callableStatement.getString(6);
 			//System.out.println(result);
 			
