@@ -1,4 +1,5 @@
 package it.padova.sanita.restbe.utils;
+// Questa è una nota per testare la gestione branch di Git
 
 import javax.annotation.PostConstruct;
 
